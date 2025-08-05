@@ -112,7 +112,6 @@ RegisterCommand('startfueling', function()
 		local vehicle = utils.getVehicleInFront()
 
 		if vehicle and DoesVehicleUseFuel(vehicle) then
-
 			local boneIndex = utils.getVehiclePetrolCapBoneIndex(vehicle)
 			local fuelcapPosition = boneIndex and GetWorldPositionOfEntityBone(vehicle, boneIndex)
 
@@ -123,7 +122,7 @@ RegisterCommand('startfueling', function()
 			return lib.notify({ type = 'error', description = locale('vehicle_far') })
 		end
 	end
-end)
+end, false)
 
 RegisterKeyMapping('startfueling', 'Fuel vehicle', 'keyboard', 'e')
 TriggerEvent('chat:removeSuggestion', '/startfueling')
