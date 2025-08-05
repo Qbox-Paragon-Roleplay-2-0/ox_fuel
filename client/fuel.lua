@@ -54,7 +54,7 @@ function fuel.startFueling(vehicle, isPump)
 	local durability = 0
 
 	if 100 - fuelAmount < config.refillValue then
-		return lib.notify({ type = 'error', description = locale('tank_full') })
+		return lib.notify({ type = 'error', description = locale('tank_full'), position = 'center-right' })
 	end
 
 	if isPump then
@@ -64,15 +64,17 @@ function fuel.startFueling(vehicle, isPump)
 		if config.priceTick > moneyAmount then
 			return lib.notify({
 				type = 'error',
-				description = locale('not_enough_money', config.priceTick)
+				description = locale('not_enough_money', config.priceTick),
+				position = 'center-right'
 			})
 		end
 	elseif not state.petrolCan then
-		return lib.notify({ type = 'error', description = locale('petrolcan_not_equipped') })
+		return lib.notify({ type = 'error', description = locale('petrolcan_not_equipped'), position = 'center-right' })
 	elseif state.petrolCan.metadata.ammo <= config.durabilityTick then
 		return lib.notify({
 			type = 'error',
-			description = locale('petrolcan_not_enough_fuel')
+			description = locale('petrolcan_not_enough_fuel'),
+			position = 'center-right'
 		})
 	end
 

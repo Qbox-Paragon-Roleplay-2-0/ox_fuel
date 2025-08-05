@@ -11,7 +11,7 @@ if config.petrolCan.enabled then
 				if utils.getMoney() >= config.priceTick then
 					fuel.startFueling(state.lastVehicle, 1)
 				else
-					lib.notify({ type = 'error', description = locale('refuel_cannot_afford') })
+					lib.notify({ type = 'error', description = locale('refuel_cannot_afford'), position = 'center-right' })
 				end
 			end,
 			icon = "fas fa-gas-pump",
@@ -31,7 +31,8 @@ if config.petrolCan.enabled then
 				local moneyAmount = utils.getMoney()
 
 				if moneyAmount < config.petrolCan.price then
-					return lib.notify({ type = 'error', description = locale('petrolcan_cannot_afford') })
+					return lib.notify({ type = 'error', description = locale('petrolcan_cannot_afford'), position =
+					'center-right' })
 				end
 
 				return fuel.getPetrolCan(data.coords, petrolCan)
@@ -47,11 +48,12 @@ else
 			onSelect = function()
 				if utils.getMoney() >= config.priceTick then
 					if GetVehicleFuelLevel(state.lastVehicle) >= 100 then
-						return lib.notify({ type = 'error', description = locale('vehicle_full') })
+						return lib.notify({ type = 'error', description = locale('vehicle_full'), position =
+						'center-right' })
 					end
 					fuel.startFueling(state.lastVehicle, 1)
 				else
-					lib.notify({ type = 'error', description = locale('refuel_cannot_afford') })
+					lib.notify({ type = 'error', description = locale('refuel_cannot_afford'), position = 'center-right' })
 				end
 			end,
 			icon = "fas fa-gas-pump",
@@ -73,13 +75,15 @@ if config.petrolCan.enabled then
 			distance = 2,
 			onSelect = function(data)
 				if not state.petrolCan then
-					return lib.notify({ type = 'error', description = locale('petrolcan_not_equipped') })
+					return lib.notify({ type = 'error', description = locale('petrolcan_not_equipped'), position =
+					'center-right' })
 				end
 
 				if state.petrolCan.metadata.ammo <= config.durabilityTick then
 					return lib.notify({
 						type = 'error',
-						description = locale('petrolcan_not_enough_fuel')
+						description = locale('petrolcan_not_enough_fuel'),
+						position = 'center-right'
 					})
 				end
 

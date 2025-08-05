@@ -31,7 +31,8 @@ local function defaultPaymentMethod(playerId, price)
 
 	TriggerClientEvent('ox_lib:notify', playerId, {
 		type = 'error',
-		description = locale('not_enough_money', price - money)
+		description = locale('not_enough_money', price - money),
+		position = 'center-right'
 	})
 end
 
@@ -51,7 +52,8 @@ RegisterNetEvent('ox_fuel:pay', function(price, fuel, netid)
 
 	TriggerClientEvent('ox_lib:notify', source, {
 		type = 'success',
-		description = locale('fuel_success', fuel, price)
+		description = locale('fuel_success', fuel, price),
+		position = 'center-right'
 	})
 end)
 
@@ -69,13 +71,15 @@ RegisterNetEvent('ox_fuel:fuelCan', function(hasCan, price)
 
 		TriggerClientEvent('ox_lib:notify', source, {
 			type = 'success',
-			description = locale('petrolcan_refill', price)
+			description = locale('petrolcan_refill', price),
+			position = 'center-right'
 		})
 	else
 		if not ox_inventory:CanCarryItem(source, 'WEAPON_PETROLCAN', 1) then
 			return TriggerClientEvent('ox_lib:notify', source, {
 				type = 'error',
-				description = locale('petrolcan_cannot_carry')
+				description = locale('petrolcan_cannot_carry'),
+				position = 'center-right'
 			})
 		end
 
@@ -85,7 +89,8 @@ RegisterNetEvent('ox_fuel:fuelCan', function(hasCan, price)
 
 		TriggerClientEvent('ox_lib:notify', source, {
 			type = 'success',
-			description = locale('petrolcan_buy', price)
+			description = locale('petrolcan_buy', price),
+			position = 'center-right'
 		})
 	end
 end)

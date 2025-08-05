@@ -100,14 +100,15 @@ RegisterCommand('startfueling', function()
 				return fuel.getPetrolCan(nearestPump)
 			end
 
-			return lib.notify({ type = 'error', description = locale('petrolcan_cannot_afford') })
+			return lib.notify({ type = 'error', description = locale('petrolcan_cannot_afford'), position =
+			'center-right' })
 		elseif moneyAmount >= config.priceTick then
 			return fuel.startFueling(state.lastVehicle, true)
 		else
-			return lib.notify({ type = 'error', description = locale('refuel_cannot_afford') })
+			return lib.notify({ type = 'error', description = locale('refuel_cannot_afford'), position = 'center-right' })
 		end
 
-		return lib.notify({ type = 'error', description = locale('vehicle_far') })
+		return lib.notify({ type = 'error', description = locale('vehicle_far'), position = 'center-right' })
 	elseif petrolCan then
 		local vehicle = utils.getVehicleInFront()
 
@@ -119,7 +120,7 @@ RegisterCommand('startfueling', function()
 				return fuel.startFueling(vehicle, false)
 			end
 
-			return lib.notify({ type = 'error', description = locale('vehicle_far') })
+			return lib.notify({ type = 'error', description = locale('vehicle_far'), position = 'center-right' })
 		end
 	end
 end, false)
